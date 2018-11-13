@@ -18,6 +18,18 @@ library(tidyverse)
 ###https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/heart-disease.names
 heart1 <- read_csv("D:\\My Passport\\Courses\\UNH\\Fall 2018\\R and Tableau\\HeartData.csv")
 
+
+# ### Convert zero values to NAs for cholesterol and hear rate
+
+heart1$Cholesterol[heart1$Cholesterol==0] <- NA
+heart1$Max_HeartRate[heart1$Max_HeartRate==0] <- NA
+
+###Drop missing values:
+heart1<- heart1[complete.cases(heart1), ]
+###Create a flat file
+
+# heart_file <- gather(heart3, "Demographic", "Value", 1:5)
+# 
 ####Build Shiny App
 library(shiny)
 library(reshape2)
